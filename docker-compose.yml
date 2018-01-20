@@ -1,0 +1,18 @@
+version: "3"
+services:
+  worker:
+    image: hengel2810/ro-order-worker:latest
+    ports:
+      - 9000:9000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+
+  api:
+    image: hengel2810/ro-order-api
+    ports:
+      - 3000:3000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+
+volumes:
+  realm-data:
