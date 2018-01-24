@@ -1,18 +1,26 @@
 version: "3"
 services:
-  worker:
+  order-worker:
     image: gcr.io/restaurant-order-192310/ro-order-worker:latest
     ports:
       - 9000:9000
     volumes:
       - realm-data:/usr/src/app/DataRealm
 
-  api:
+  order-api:
     image: gcr.io/restaurant-order-192310/ro-order-api:latest
     ports:
       - 3000:3000
     volumes:
       - realm-data:/usr/src/app/DataRealm
+
+  admin-api:
+    image: gcr.io/restaurant-order-192310/ro-admin-api
+    ports:
+      - 4000:4000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+
 
 volumes:
   realm-data:
