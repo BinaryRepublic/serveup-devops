@@ -25,4 +25,4 @@ scrape_configs:
   - job_name: 'admin-api'
     scrape_interval: 5s
     static_configs:
-      - targets: ['admin-api:3000']
+      - targets: ['admin-api:4000']
