@@ -18,7 +18,11 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['cadvisor:8080']
-  - job_name: 'orderAPI'
+  - job_name: 'order-api'
     scrape_interval: 5s
     static_configs:
       - targets: ['order-api:3000']
+  - job_name: 'admin-api'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['admin-api:3000']
