@@ -7,6 +7,7 @@ services:
       - 9000:9000
     volumes:
       - realm-data:/usr/src/app/DataRealm
+    network_mode: host
 
   order-api:
     image: gcr.io/restaurant-order-192310/ro-order-api:latest
@@ -15,6 +16,7 @@ services:
       - 3000:3000
     volumes:
       - realm-data:/usr/src/app/DataRealm
+    network_mode: host
 
   admin-api:
     image: gcr.io/restaurant-order-192310/ro-admin-api
@@ -23,6 +25,7 @@ services:
       - 4000:4000
     volumes:
       - realm-data:/usr/src/app/DataRealm
+    network_mode: host
 
 
 volumes:
