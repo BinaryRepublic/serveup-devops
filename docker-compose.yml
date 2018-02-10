@@ -64,6 +64,12 @@ services:
     volumes:
       - realm-data:/usr/src/app/DataRealm
 
+  order-app:
+    image: gcr.io/restaurant-order-192310/ro-order-app
+    container_name: order-app
+    ports:
+      - 80:80
+
 volumes:
   realm-data:
   prometheus_data: {}
