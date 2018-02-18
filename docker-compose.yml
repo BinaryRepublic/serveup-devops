@@ -10,12 +10,16 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
       - '9090:9090'
+    networks:
+      - ro
 
   node-exporter:
     image: prom/node-exporter
     container_name: node-exporter
     ports:
       - '9100:9100'
+    networks:
+      - ro
 
   grafana:
     image: grafana/grafana:latest
@@ -28,6 +32,8 @@ services:
       - prometheus
     ports:
       - "9191:3000"
+    networks:
+      - ro
 
   cadvisor:
     image: google/cadvisor:latest
@@ -39,38 +45,13 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-
-  order-worker:
-    image: gcr.io/restaurant-order-192310/ro-order-worker:latest
-    container_name: order-worker
-    ports:
-      - 9000:9000
-    volumes:
-      - realm-data:/usr/src/app/DataRealm
-
-  order-api:
-    image: gcr.io/restaurant-order-192310/ro-order-api:latest
-    container_name: order-api
-    ports:
-      - 3000:3000
-    volumes:
-      - realm-data:/usr/src/app/DataRealm
-
-  admin-api:
-    image: gcr.io/restaurant-order-192310/ro-admin-api
-    container_name: admin-api
-    ports:
-      - 4000:4000
-    volumes:
-      - realm-data:/usr/src/app/DataRealm
-
-  order-app:
-    image: gcr.io/restaurant-order-192310/ro-order-app
-    container_name: order-app
-    ports:
-      - 80:80
+    networks:
+      - ro
 
 volumes:
-  realm-data:
   prometheus_data: {}
   grafana_data: {}
+
+networks:
+  ro:
+    driver: bridge

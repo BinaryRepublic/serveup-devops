@@ -1,0 +1,47 @@
+version: '3'
+services:
+
+  order-worker:
+    image: gcr.io/restaurant-order-192310/ro-order-worker:latest
+    container_name: order-worker
+    ports:
+      - 9000:9000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+    networks:
+      - ro
+
+  order-api:
+    image: gcr.io/restaurant-order-192310/ro-order-api:latest
+    container_name: order-api
+    ports:
+      - 3000:3000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+    networks:
+      - ro
+
+  admin-api:
+    image: gcr.io/restaurant-order-192310/ro-admin-api
+    container_name: admin-api
+    ports:
+      - 4000:4000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+    networks:
+      - ro
+
+  order-app:
+    image: gcr.io/restaurant-order-192310/ro-order-app
+    container_name: order-app
+    ports:
+      - 80:80
+    networks:
+      - ro
+
+volumes:
+  realm-data:
+
+networks:
+  ro:
+    external: true 
