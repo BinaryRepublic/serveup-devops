@@ -9,7 +9,7 @@ services:
     volumes:
       - realm-data:/usr/src/app/DataRealm
     networks:
-      - ro
+      - rodevops_ro
 
   order-api:
     image: gcr.io/restaurant-order-192310/ro-order-api:latest
@@ -19,7 +19,7 @@ services:
     volumes:
       - realm-data:/usr/src/app/DataRealm
     networks:
-      - ro
+      - rodevops_ro
 
   admin-api:
     image: gcr.io/restaurant-order-192310/ro-admin-api
@@ -29,7 +29,7 @@ services:
     volumes:
       - realm-data:/usr/src/app/DataRealm
     networks:
-      - ro
+      - rodevops_ro
 
   order-app:
     image: gcr.io/restaurant-order-192310/ro-order-app
@@ -37,11 +37,11 @@ services:
     ports:
       - 80:80
     networks:
-      - ro
+      - rodevops_ro
 
 volumes:
   realm-data:
 
 networks:
-  ro:
+  rodevops_ro:
     external: true 
