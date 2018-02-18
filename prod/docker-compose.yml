@@ -3,7 +3,7 @@ services:
 
   order-worker:
     image: gcr.io/restaurant-order-192310/ro-order-worker:master
-    container_name: order-worker
+    container_name: order-worker-prod
     ports:
       - 9000:9000
     volumes:
@@ -15,7 +15,7 @@ services:
 
   order-api:
     image: gcr.io/restaurant-order-192310/ro-order-api:master
-    container_name: order-api
+    container_name: order-api-prod
     ports:
       - 3000:3000
     volumes:
@@ -27,7 +27,7 @@ services:
 
   admin-api:
     image: gcr.io/restaurant-order-192310/ro-admin-api:master
-    container_name: admin-api
+    container_name: admin-api-prod
     ports:
       - 4000:4000
     volumes:
@@ -39,7 +39,7 @@ services:
 
   order-app:
     image: gcr.io/restaurant-order-192310/ro-order-app:master
-    container_name: order-app
+    container_name: order-app-prod
     ports:
       - 80:80
     networks:
