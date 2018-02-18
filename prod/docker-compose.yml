@@ -2,7 +2,7 @@ version: '3'
 services:
 
   order-worker:
-    image: gcr.io/restaurant-order-192310/ro-order-worker:latest
+    image: gcr.io/restaurant-order-192310/ro-order-worker:master
     container_name: order-worker
     ports:
       - 9000:9000
@@ -12,7 +12,7 @@ services:
       - rodevops_ro
 
   order-api:
-    image: gcr.io/restaurant-order-192310/ro-order-api:latest
+    image: gcr.io/restaurant-order-192310/ro-order-api:master
     container_name: order-api
     ports:
       - 3000:3000
@@ -22,7 +22,7 @@ services:
       - rodevops_ro
 
   admin-api:
-    image: gcr.io/restaurant-order-192310/ro-admin-api
+    image: gcr.io/restaurant-order-192310/ro-admin-api:master
     container_name: admin-api
     ports:
       - 4000:4000
@@ -32,7 +32,7 @@ services:
       - rodevops_ro
 
   order-app:
-    image: gcr.io/restaurant-order-192310/ro-order-app
+    image: gcr.io/restaurant-order-192310/ro-order-app:master
     container_name: order-app
     ports:
       - 80:80
