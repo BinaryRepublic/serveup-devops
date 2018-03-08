@@ -1,0 +1,307 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Order API",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://138.68.71.39:3000"
+    }
+  ],
+  "paths": {
+    "/order": {
+      "get": {
+        "summary": "Get open orders from restaurant",
+        "operationId": "getOrders",
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "restaurant-id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the restaurant",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "array of orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new order",
+        "operationId": "postOrder",
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "new order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewOrderResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/order/status": {
+      "put": {
+        "summary": "Update order status",
+        "operationId": "updateOrderStatus",
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderUpdateStatusRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "array of orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/apporder": {
+      "post": {
+        "summary": "Create a new apporder",
+        "operationId": "postAppOrder",
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAppOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "new order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppOrderItem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OrderResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "708e49df-3d67-4517-9a42-b9e4db4a660c"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2018-02-07T17:09:02.654Z"
+          },
+          "items": {
+            "type": "array",
+            "$ref": "#/components/schemas/OrderItem"
+          },
+          "voiceDeviceId": {
+            "type": "string",
+            "example": "f9cb0c7d-9db6-4632-940a-b507cf8ff79e"
+          },
+          "restaurantId": {
+            "type": "string",
+            "example": "195d4792-e771-4d0b-8b45-df96a2965f2f"
+          },
+          "status": {
+            "type": "number",
+            "example": 1
+          }
+        }
+      },
+      "OrderItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "41628813-3635-4762-93ef-339cedd12e2d"
+          },
+          "name": {
+            "type": "string",
+            "example": "Sion Kölsch"
+          },
+          "size": {
+            "type": "number",
+            "example": 200
+          },
+          "nb": {
+            "type": "number",
+            "example": 2
+          }
+        }
+      },
+      "OrderUpdateStatusRequest": {
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "708e49df-3d67-4517-9a42-b9e4db4a660c"
+          },
+          "status": {
+            "type": "number",
+            "example": 2
+          }
+        }
+      },
+      "NewOrderRequest": {
+        "required": [
+          "order",
+          "voiceDeviceId"
+        ],
+        "properties": {
+          "order": {
+            "type": "string",
+            "example": "Vier Bier und drei kleine Cola, bitte"
+          },
+          "voiceDeviceId": {
+            "type": "string",
+            "example": "f9cb0c7d-9db6-4632-940a-b507cf8ff79e"
+          }
+        }
+      },
+      "NewOrderResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "6974888f-9c0a-46e3-8be9-4e0182f5cff7"
+          },
+          "success": {
+            "type": "number",
+            "example": 1
+          }
+        }
+      },
+      "NewAppOrderRequest": {
+        "required": [
+          "order"
+        ],
+        "properties": {
+          "order": {
+            "type": "string",
+            "example": "Vier Bier und drei kleine Cola, bitte"
+          }
+        }
+      },
+      "AppOrderItem": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "jever pilsener"
+          },
+          "nb": {
+            "type": "number",
+            "example": 2
+          },
+          "size": {
+            "type": "number",
+            "example": 400
+          },
+          "id": {
+            "type": "string",
+            "example": "9c1d89e6-d8a4-4988-9f35-a7b73febe2b8"
+          },
+          "created": {
+            "type": "string",
+            "example": "2018-03-08T15:54:11.254Z"
+          }
+        }
+      }
+    }
+  }
+}
