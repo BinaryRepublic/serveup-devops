@@ -6,6 +6,7 @@ services:
     volumes:
       - ./config:/data
     environment:
+      - SWAGGER_JSON=/data/order.json
       - SWAGGER_JSON=/data/admin.json
     ports:
       - '1000:8080'
