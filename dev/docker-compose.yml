@@ -2,7 +2,7 @@ version: '3'
 services:
 
   order-worker:
-    image: gcr.io/restaurant-order-192310/ro-order-worker:dev
+    image: gcr.io/restaurant-order-192310/ro-order-worker-dev:latest
     container_name: order-worker-dev
     ports:
       - 9200:9000
@@ -14,7 +14,7 @@ services:
       - DEV
 
   order-api:
-    image: gcr.io/restaurant-order-192310/ro-order-api:dev
+    image: gcr.io/restaurant-order-192310/ro-order-api-dev:latest
     container_name: order-api-dev
     ports:
       - 3200:3000
@@ -26,7 +26,7 @@ services:
       - DEV
 
   admin-api:
-    image: gcr.io/restaurant-order-192310/ro-admin-api:dev
+    image: gcr.io/restaurant-order-192310/ro-admin-api-dev:latest
     container_name: admin-api-dev
     ports:
       - 4200:4000
@@ -38,7 +38,7 @@ services:
       - DEV
 
   order-app:
-    image: gcr.io/restaurant-order-192310/ro-order-app:dev
+    image: gcr.io/restaurant-order-192310/ro-order-app-dev:latest
     container_name: order-app-dev
     ports:
       - 82:80
@@ -48,7 +48,7 @@ services:
       - DEV
   
   analyze-api:
-    image: gcr.io/restaurant-order-192310/ro-analyze-api:dev
+    image: gcr.io/restaurant-order-192310/ro-analyze-api-dev:latest
     container_name: analyze-api-dev
     ports:
       - 5200:80
