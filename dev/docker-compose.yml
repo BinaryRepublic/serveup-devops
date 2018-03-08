@@ -49,7 +49,7 @@ services:
   
   analyze-api:
     image: gcr.io/restaurant-order-192310/ro-analyze-api:dev
-    container_name: ro-analyze-api
+    container_name: analyze-api-dev
     ports:
       - 5200:80
     environment:
