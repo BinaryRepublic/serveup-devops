@@ -2,11 +2,19 @@ version: '3'
 services:
   swagger-ui:
     image: swaggerapi/swagger-ui:latest
-    container_name: swagger-ui
+    container_name: swagger-ui-admin
+    volumes:
+      - ./config:/data
+    environment:
+      - SWAGGER_JSON=/data/admin.json
+    ports:
+      - '4080:8080'
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    container_name: swagger-ui-order
     volumes:
       - ./config:/data
     environment:
       - SWAGGER_JSON=/data/order.json
-      - SWAGGER_JSON=/data/admin.json
     ports:
-      - '1000:8080'
+      - '3080:8080'
