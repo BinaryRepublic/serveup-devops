@@ -52,6 +52,8 @@ services:
     container_name: analyze-api-dev
     ports:
       - 5200:80
+    networks:
+      - rodevops_ro
     environment:
       - DEV
 
