@@ -11,7 +11,7 @@ services:
     networks:
       - rodevops_ro
     environment:
-      - DEV
+      - DEV=1
 
   order-api:
     image: gcr.io/restaurant-order-192310/ro-order-api:dev
@@ -23,7 +23,7 @@ services:
     networks:
       - rodevops_ro
     environment:
-      - DEV
+      - DEV=1
 
   admin-api:
     image: gcr.io/restaurant-order-192310/ro-admin-api:dev
@@ -35,7 +35,7 @@ services:
     networks:
       - rodevops_ro
     environment:
-      - DEV
+      - DEV=1
 
   order-app:
     image: gcr.io/restaurant-order-192310/ro-order-app:dev
@@ -45,7 +45,7 @@ services:
     networks:
       - rodevops_ro
     environment:
-      - DEV
+      - DEV=1
   
   analyze-api:
     image: gcr.io/restaurant-order-192310/ro-analyze-api:dev
@@ -55,7 +55,7 @@ services:
     networks:
       - rodevops_ro
     environment:
-      - DEV
+      - DEV=1
 
 volumes:
   realm-data:
