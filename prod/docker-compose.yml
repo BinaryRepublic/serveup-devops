@@ -54,6 +54,18 @@ services:
       - 5000:80
     environment:
       - PROD=1
+  
+  auth-api:
+    image: gcr.io/restaurant-order-192310/ro-auth-api:master
+    container_name: auth-api-prod
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+    networks:
+      - rodevops_ro
+    ports:
+      - 2000:4000
+    environment:
+      - PROD=1
 
 volumes:
   realm-data:
