@@ -71,6 +71,7 @@ services:
 
 volumes:
   realm-data:
+  auth-data:
 
 networks:
   rodevops_ro:
