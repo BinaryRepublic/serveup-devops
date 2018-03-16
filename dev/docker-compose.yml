@@ -61,7 +61,7 @@ services:
     image: gcr.io/restaurant-order-192310/ro-auth-api:dev
     container_name: auth-api-dev
     volumes:
-      - realm-data:/usr/src/app/DataRealm
+      - auth-data:/usr/src/app/DataRealm
     networks:
       - rodevops_ro
     ports:
