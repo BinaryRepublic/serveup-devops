@@ -9,6 +9,7 @@ services:
       - SWAGGER_JSON=/data/admin.json
     ports:
       - '4080:8080'
+      
   swagger-ui-order:
     image: swaggerapi/swagger-ui:latest
     container_name: swagger-ui-order
