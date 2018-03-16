@@ -1143,7 +1143,9 @@
           },
           "defaultParents": {
             "type": "array",
-            "$ref": "#/components/schemas/DefaultParentDrinkObject"
+            "items": {
+                "$ref": "#/components/schemas/DefaultParentDrinkObject"
+            }
           }
         }
       },
@@ -1165,7 +1167,9 @@
           },
           "defaultParents": {
             "type": "array",
-            "$ref": "#/components/schemas/DefaultParentDrinkObject"
+            "items": {
+                "$ref": "#/components/schemas/DefaultParentDrinkObject"
+            }
           }
         }
       },
@@ -1191,7 +1195,9 @@
           },
           "defaultParents": {
             "type": "array",
-            "$ref": "#/components/schemas/DefaultParentDrinkObject"
+            "items": {
+                "$ref": "#/components/schemas/DefaultParentDrinkObject"
+            }
           }
         }
       },
@@ -1297,7 +1303,9 @@
           },
           "defaultParents": {
             "type": "array",
-            "$ref": "#/components/schemas/DefaultParentDrinkObject"
+            "items": {
+                "$ref": "#/components/schemas/DefaultParentDrinkObject"
+            }
           }
         }
       },
