@@ -47,6 +47,16 @@ services:
     environment:
       - PROD=1
 
+  admin-app:
+      image: gcr.io/restaurant-order-192310/ro-admin-app:master
+      container_name: admin-app-prod
+      ports:
+        - 90:80
+      networks:
+        - rodevops_ro
+      environment:
+        - PROD=1
+
   analyze-api:
     image: gcr.io/restaurant-order-192310/ro-analyze-api:master
     container_name: analyze-api-prod
