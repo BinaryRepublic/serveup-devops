@@ -44,8 +44,6 @@ services:
       - 80:80
     networks:
       - rodevops_ro
-    environment:
-      - PROD=1
 
   admin-app:
       image: gcr.io/restaurant-order-192310/ro-admin-app:master
@@ -54,8 +52,6 @@ services:
         - 90:80
       networks:
         - rodevops_ro
-      environment:
-        - PROD=1
 
   analyze-api:
     image: gcr.io/restaurant-order-192310/ro-analyze-api:master
@@ -78,8 +74,6 @@ services:
       - rodevops_ro
     ports:
       - 2000:4000
-    environment:
-      - PROD=1
 
 volumes:
   realm-data:

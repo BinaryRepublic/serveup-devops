@@ -44,8 +44,14 @@ services:
       - 82:80
     networks:
       - rodevops_ro
-    environment:
-      - DEV=1
+
+  admin-app:
+    image: gcr.io/restaurant-order-192310/ro-admin-app:dev
+    container_name: admin-app-dev
+    ports:
+      - 92:80
+    networks:
+      - rodevops_ro
   
   analyze-api:
     image: gcr.io/restaurant-order-192310/ro-analyze-api:dev
@@ -68,8 +74,14 @@ services:
       - rodevops_ro
     ports:
       - 2200:4000
-    environment:
-      - DEV=1
+
+  webpage:
+    image: gcr.io/restaurant-order-192310/ro-webpage:dev
+    container_name: webpage-dev
+    networks:
+      - rodevops_ro
+    ports:
+      - 10000:80
 
 volumes:
   realm-data:
