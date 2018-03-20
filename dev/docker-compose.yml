@@ -52,6 +52,8 @@ services:
     container_name: analyze-api-dev
     ports:
       - 5200:80
+    volumes:
+      - voicedevice-soundfiles:/go/soundfiles
     networks:
       - rodevops_ro
     environment:
@@ -72,6 +74,7 @@ services:
 volumes:
   realm-data:
   auth-data:
+  voicedevice-soundfiles:
 
 networks:
   rodevops_ro:
