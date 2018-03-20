@@ -79,7 +79,7 @@ services:
     networks:
       - rodevops_ro
     ports:
-      - 10000:80
+      - 11000:80
 
 volumes:
   realm-data:
