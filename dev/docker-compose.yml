@@ -24,6 +24,8 @@ services:
       - rodevops_ro
     environment:
       - DEV=1
+      - ROOT_USERNAME=root
+      - ROOT_PASSWORD=CODErocks2018
 
   admin-api:
     image: gcr.io/restaurant-order-192310/ro-admin-api:dev
@@ -36,6 +38,8 @@ services:
       - rodevops_ro
     environment:
       - DEV=1
+      - ROOT_USERNAME=root
+      - ROOT_PASSWORD=CODErocks2018
 
   order-app:
     image: gcr.io/restaurant-order-192310/ro-order-app:dev
@@ -52,7 +56,7 @@ services:
       - 92:80
     networks:
       - rodevops_ro
-  
+
   analyze-api:
     image: gcr.io/restaurant-order-192310/ro-analyze-api:dev
     container_name: analyze-api-dev
