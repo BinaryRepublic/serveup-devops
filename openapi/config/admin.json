@@ -13,6 +13,80 @@
     }
   ],
   "paths": {
+    "/login": {
+      "post": {
+        "summary": "Authenticate with credentials",
+        "operationId": "login",
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "delete": {
+        "summary": "Logout with accessToken",
+        "operationId": "logout",
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "logout successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
     "/account": {
       "post": {
         "summary": "Create an account",
@@ -900,6 +974,46 @@
   },
   "components": {
     "schemas": {
+      "LoginRequest": {
+        "properties": {
+          "mail": {
+            "type": "string",
+            "example": "example@ro.de"
+          },
+          "password": {
+            "type": "string",
+            "example": "PaSsWoRt1_!"
+          }
+        }
+      },
+      "LoginResponse": {
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "example": "6974888f-9c0a-46e3-8be9-4e0182f5cff7"
+          },
+          "grant": {
+            "type": "string",
+            "example": "6974888f-9c0a-46e3-8be9-4e0182f5cff7"
+          }
+        }
+      },
+      "LogoutRequest": {
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "example": "6974888f-9c0a-46e3-8be9-4e0182f5cff7"
+          }
+        }
+      },
+      "LogoutResponse": {
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "example": "6974888f-9c0a-46e3-8be9-4e0182f5cff7"
+          }
+        }
+      },
       "AccountResponse": {
         "properties": {
           "id": {
