@@ -1,0 +1,253 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Analyze API",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://138.68.71.39:5000"
+    }
+  ],
+  "paths": {
+    "/order": {
+      "get": {
+        "summary": "Get order from id",
+        "operationId": "getOrder",
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the order",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "get order item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Post order soundfile",
+        "operationId": "postOrder",
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/OrderSoundfileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "get order with additional data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/order/restaurant": {
+      "get": {
+        "summary": "Get order from restaurant-id",
+        "operationId": "getOrderByRestaurant",
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "restaurant-id",
+            "in": "query",
+            "required": true,
+            "description": "The id of the order",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "The status of the orders",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "array of orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/soundfile": {
+      "get": {
+        "summary": "Get order from restaurant-id",
+        "operationId": "getOrderByRestaurant",
+        "tags": [
+          "Soundfile"
+        ],
+        "parameters": [
+          {
+            "name": "order-id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the order",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "soundfile of order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "wrong request"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OrderResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "708e49df-3d67-4517-9a42-b9e4db4a660c"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2018-02-07T17:09:02.654Z"
+          },
+          "items": {
+            "type": "array",
+            "$ref": "#/components/schemas/OrderItem"
+          },
+          "voiceDeviceId": {
+            "type": "string",
+            "example": "f9cb0c7d-9db6-4632-940a-b507cf8ff79e"
+          },
+          "restaurantId": {
+            "type": "string",
+            "example": "195d4792-e771-4d0b-8b45-df96a2965f2f"
+          },
+          "status": {
+            "type": "number",
+            "example": 1
+          },
+          "soundfile-path": {
+            "type": "string",
+            "example": "http://138.68.71.39:5000/soundfile/195d4792-e771-4d0b-8b45-df96a2965f2f"
+          }
+        }
+      },
+      "OrderItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "41628813-3635-4762-93ef-339cedd12e2d"
+          },
+          "name": {
+            "type": "string",
+            "example": "Sion Kölsch"
+          },
+          "size": {
+            "type": "number",
+            "example": 200
+          },
+          "nb": {
+            "type": "number",
+            "example": 2
+          },
+          "category": {
+            "type": "string",
+            "example": "Bier"
+          }
+        }
+      },
+      "OrderSoundfileRequest": {
+        "properties": {
+          "order-id": {
+            "type": "string",
+            "example": "41628813-3635-4762-93ef-339cedd12e2d"
+          },
+          "soundfile": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      }
+    }
+  }
+}
