@@ -14,6 +14,7 @@ services:
       - DEV=1
     labels:
       - "runningstatus=ro-dev"
+      - "runningtype=ro-backend"
 
   order-api:
     image: gcr.io/restaurant-order-192310/ro-order-api:dev
@@ -30,6 +31,7 @@ services:
       - ROOT_PASSWORD=CODErocks2018
     labels:
       - "runningstatus=ro-dev"
+      - "runningtype=ro-backend"
 
   admin-api:
     image: gcr.io/restaurant-order-192310/ro-admin-api:dev
@@ -46,6 +48,7 @@ services:
       - ROOT_PASSWORD=CODErocks2018
     labels:
       - "runningstatus=ro-dev"
+      - "runningtype=ro-backend"
 
   order-app:
     image: gcr.io/restaurant-order-192310/ro-order-app:dev
@@ -56,6 +59,7 @@ services:
       - rodevops_ro
     labels:
       - "runningstatus=ro-dev"
+      - "runningtype=ro-frontend"
 
   admin-app:
     image: gcr.io/restaurant-order-192310/ro-admin-app:dev
@@ -66,6 +70,7 @@ services:
       - rodevops_ro
     labels:
       - "runningstatus=ro-dev"
+      - "runningtype=ro-frontend"
 
   analyze-api:
     image: gcr.io/restaurant-order-192310/ro-analyze-api:dev
@@ -80,6 +85,7 @@ services:
       - DEV=1
     labels:
       - "runningstatus=ro-dev"
+      - "runningtype=ro-backend"
 
   auth-api:
     image: gcr.io/restaurant-order-192310/ro-auth-api:dev
@@ -92,6 +98,7 @@ services:
       - 2200:4000
     labels:
       - "runningstatus=ro-dev"
+      - "runningtype=ro-backend"
 
   webpage:
     image: gcr.io/restaurant-order-192310/ro-webpage:dev
@@ -102,6 +109,7 @@ services:
       - 11000:80
     labels:
       - "runningstatus=ro-dev"
+      - "runningtype=ro-frontend"
 
 volumes:
   realm-data:
