@@ -104,6 +104,7 @@ services:
 volumes:
   prometheus_data: {}
   grafana_data: {}
+  elasticdata: {}
 
 networks:
   ro:
