@@ -12,6 +12,8 @@ services:
       - rodevops_ro
     environment:
       - PROD=1
+    labels:
+      - "runningstatus=ro-prod"
 
   order-api:
     image: gcr.io/restaurant-order-192310/ro-order-api:master
@@ -26,6 +28,8 @@ services:
       - PROD=1
       - ROOT_USERNAME=root
       - ROOT_PASSWORD=CODErocks2018
+    labels:
+      - "runningstatus=ro-prod"
 
   admin-api:
     image: gcr.io/restaurant-order-192310/ro-admin-api:master
@@ -40,6 +44,8 @@ services:
       - PROD=1
       - ROOT_USERNAME=root
       - ROOT_PASSWORD=CODErocks2018
+    labels:
+      - "runningstatus=ro-prod"
 
   order-app:
     image: gcr.io/restaurant-order-192310/ro-order-app:master
@@ -48,6 +54,8 @@ services:
       - 80:80
     networks:
       - rodevops_ro
+    labels:
+      - "runningstatus=ro-prod"
 
   admin-app:
       image: gcr.io/restaurant-order-192310/ro-admin-app:master
@@ -56,6 +64,8 @@ services:
         - 90:80
       networks:
         - rodevops_ro
+      labels:
+        - "runningstatus=ro-prod"
 
   analyze-api:
     image: gcr.io/restaurant-order-192310/ro-analyze-api:master
@@ -68,6 +78,8 @@ services:
       - rodevops_ro
     environment:
       - PROD=1
+    labels:
+      - "runningstatus=ro-prod"
 
   auth-api:
     image: gcr.io/restaurant-order-192310/ro-auth-api:master
@@ -78,6 +90,8 @@ services:
       - rodevops_ro
     ports:
       - 2000:4000
+    labels:
+      - "runningstatus=ro-prod"
 
 volumes:
   realm-data:
