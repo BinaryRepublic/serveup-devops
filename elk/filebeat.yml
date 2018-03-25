@@ -5,6 +5,5 @@ filebeat.prospectors:
   scan_frequency: 5s
   processors:
   - add_docker_metadata: ~
-
 output.logstash:
   hosts: ["logstash:5044"]
