@@ -5,7 +5,7 @@ services:
     image: gcr.io/restaurant-order-192310/ro-order-worker:dev
     container_name: order-worker-dev
     ports:
-      - 9200:9000
+      - 6200:9000
     volumes:
       - realm-data:/usr/src/app/DataRealm
     networks:
