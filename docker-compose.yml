@@ -48,58 +48,58 @@ services:
     networks:
       - ro
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch-basic:6.2.3
-    container_name: elasticsearch
-    ports:
-      - "9200:9200"
-    volumes:
-      - ./elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-      - elasticdata:/usr/share/elasticsearch/data
-    networks:
-      - ro
-    environment:
-      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
-      - 'ELASTIC_PASSWORD=DBSxcN6U'
+  # elasticsearch:
+  #   image: docker.elastic.co/elasticsearch/elasticsearch-basic:6.2.3
+  #   container_name: elasticsearch
+  #   ports:
+  #     - "9200:9200"
+  #   volumes:
+  #     - ./elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+  #     - elasticdata:/usr/share/elasticsearch/data
+  #   networks:
+  #     - ro
+  #   environment:
+  #     - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+  #     - 'ELASTIC_PASSWORD=DBSxcN6U'
 
-  logstash:
-    image: docker.elastic.co/logstash/logstash-x-pack:6.2.3
-    container_name: logstash
-    ports:
-      - "5044:5044"
-    volumes:
-      - ./elk/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
-      - ./elk/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
-    networks:
-      - ro
-    environment:
-      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
-    depends_on:
-      - elasticsearch
+  # logstash:
+  #   image: docker.elastic.co/logstash/logstash-x-pack:6.2.3
+  #   container_name: logstash
+  #   ports:
+  #     - "5044:5044"
+  #   volumes:
+  #     - ./elk/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+  #     - ./elk/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+  #   networks:
+  #     - ro
+  #   environment:
+  #     - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+  #   depends_on:
+  #     - elasticsearch
 
-  filebeat:
-    image: docker.elastic.co/beats/filebeat:6.2.2
-    container_name: filebeat
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /var/lib/docker:/var/lib/docker
-      - ./elk/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-    networks:
-      - ro
-    depends_on:
-      - logstash
+  # filebeat:
+  #   image: docker.elastic.co/beats/filebeat:6.2.2
+  #   container_name: filebeat
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /var/lib/docker:/var/lib/docker
+  #     - ./elk/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+  #   networks:
+  #     - ro
+  #   depends_on:
+  #     - logstash
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana-x-pack:6.2.3
-    container_name: kibana
-    ports:
-      - "5601:5601"
-    volumes:
-      - ./elk/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
-    networks:
-      - ro
-    depends_on:
-      - elasticsearch
+  # kibana:
+  #   image: docker.elastic.co/kibana/kibana-x-pack:6.2.3
+  #   container_name: kibana
+  #   ports:
+  #     - "5601:5601"
+  #   volumes:
+  #     - ./elk/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+  #   networks:
+  #     - ro
+  #   depends_on:
+  #     - elasticsearch
 
 volumes:
   prometheus_data: {}
