@@ -85,7 +85,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker:/var/lib/docker
-      - ./elk/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
     networks:
       - ro
     depends_on:
