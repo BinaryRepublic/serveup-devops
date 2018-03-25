@@ -59,7 +59,7 @@ services:
   #   networks:
   #     - ro
   #   environment:
-  #     - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
   #     - 'ELASTIC_PASSWORD=DBSxcN6U'
 
   # logstash:
@@ -73,7 +73,7 @@ services:
   #   networks:
   #     - ro
   #   environment:
-  #     - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
   #   depends_on:
   #     - elasticsearch
 
