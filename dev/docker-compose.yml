@@ -106,7 +106,7 @@ services:
     networks:
       - rodevops_ro
     ports:
-      - 11000:80
+      - 11200:80
     labels:
       - "runningstatus=ro-dev"
       - "runningtype=ro-frontend"
