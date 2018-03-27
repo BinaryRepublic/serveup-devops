@@ -100,18 +100,18 @@ services:
       - "runningstatus=ro-prod"
       - "runningtype=ro-backend"
 
-    webpage:
-      image: gcr.io/restaurant-order-192310/ro-webpage:prod
-      container_name: webpage-prod
-      networks:
-        - rodevops_ro
-      ports:
-        - 11000:80
-      environment:
-        - WEB_DOCUMENT_INDEX=index.html
-      labels:
-        - "runningstatus=ro-prod"
-        - "runningtype=ro-frontend"
+  webpage:
+    image: gcr.io/restaurant-order-192310/ro-webpage:prod
+    container_name: webpage-prod
+    networks:
+      - rodevops_ro
+    ports:
+      - 11000:80
+    environment:
+      - WEB_DOCUMENT_INDEX=index.html
+    labels:
+      - "runningstatus=ro-prod"
+      - "runningtype=ro-frontend"
 
 volumes:
   realm-data:
