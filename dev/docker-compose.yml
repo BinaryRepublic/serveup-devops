@@ -107,6 +107,8 @@ services:
       - rodevops_ro
     ports:
       - 11200:80
+    environment:
+      - WEB_DOCUMENT_INDEX=index.html
     labels:
       - "runningstatus=ro-dev"
       - "runningtype=ro-frontend"
