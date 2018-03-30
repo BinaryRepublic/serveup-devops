@@ -1,4 +1,4 @@
-cd /openapi
+cd openapi/
 docker-compose down
 cd ../dev
 docker-compose down
