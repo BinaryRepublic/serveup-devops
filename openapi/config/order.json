@@ -349,9 +349,17 @@
             "type": "string",
             "example": "2018-02-07T17:09:02.654Z"
           },
-          "items": {
+          "drinks": {
             "type": "array",
-            "$ref": "#/components/schemas/OrderItem"
+            "items": {
+              "$ref": "#/components/schemas/OrderDrink"
+            }
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderService"
+            }
           },
           "voiceDeviceId": {
             "type": "string",
@@ -364,10 +372,14 @@
           "status": {
             "type": "number",
             "example": 1
+          },
+          "soundfile-path": {
+            "type": "string",
+            "example": "http://138.68.71.39:5000/soundfile/195d4792-e771-4d0b-8b45-df96a2965f2f"
           }
         }
       },
-      "OrderItem": {
+      "OrderDrink": {
         "properties": {
           "id": {
             "type": "string",
@@ -388,6 +400,18 @@
           "category": {
             "type": "string",
             "example": "Bier"
+          }
+        }
+      },
+      "OrderService": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "41628813-3635-4762-93ef-339cedd12e2d"
+          },
+          "name": {
+            "type": "string",
+            "example": "kellner"
           }
         }
       },
