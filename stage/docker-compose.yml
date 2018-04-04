@@ -1,0 +1,123 @@
+version: '3'
+services:
+
+  order-worker:
+    image: gcr.io/restaurant-order-192310/ro-order-worker:master
+    container_name: order-worker-stage
+    ports:
+      - 6000:9000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+    networks:
+      - rodevops_ro
+    environment:
+      - STAGE=1
+    labels:
+      - "runningstatus=ro-stage"
+      - "runningtype=ro-backend"
+
+  order-api:
+    image: gcr.io/restaurant-order-192310/ro-order-api:master
+    container_name: order-api-stage
+    ports:
+      - 3000:3000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+    networks:
+      - rodevops_ro
+    environment:
+      - STAGE=1
+      - ROOT_USERNAME=root
+      - ROOT_PASSWORD=CODErocks2018
+    labels:
+      - "runningstatus=ro-stage"
+      - "runningtype=ro-backend"
+
+  admin-api:
+    image: gcr.io/restaurant-order-192310/ro-admin-api:master
+    container_name: admin-api-stage
+    ports:
+      - 4000:4000
+    volumes:
+      - realm-data:/usr/src/app/DataRealm
+    networks:
+      - rodevops_ro
+    environment:
+      - STAGE=1
+      - ROOT_USERNAME=root
+      - ROOT_PASSWORD=CODErocks2018
+    labels:
+      - "runningstatus=ro-stage"
+      - "runningtype=ro-backend"
+
+  order-app:
+    image: gcr.io/restaurant-order-192310/ro-order-app:master
+    container_name: order-app-stage
+    ports:
+      - 80:80
+    networks:
+      - rodevops_ro
+    labels:
+      - "runningstatus=ro-stage"
+      - "runningtype=ro-frontend"
+
+  admin-app:
+      image: gcr.io/restaurant-order-192310/ro-admin-app:master
+      container_name: admin-app-stage
+      ports:
+        - 90:80
+      networks:
+        - rodevops_ro
+      labels:
+        - "runningstatus=ro-stage"
+        - "runningtype=ro-frontend"
+
+  analyze-api:
+    image: gcr.io/restaurant-order-192310/ro-analyze-api:master
+    container_name: analyze-api-stage
+    ports:
+      - 5000:80
+    volumes:
+      - voicedevice-soundfiles:/go/soundfiles
+    networks:
+      - rodevops_ro
+    environment:
+      - STAGE=1
+    labels:
+      - "runningstatus=ro-stage"
+      - "runningtype=ro-backend"
+
+  auth-api:
+    image: gcr.io/restaurant-order-192310/ro-auth-api:master
+    container_name: auth-api-stage
+    volumes:
+      - auth-data:/usr/src/app/DataRealm
+    networks:
+      - rodevops_ro
+    ports:
+      - 2000:4000
+    labels:
+      - "runningstatus=ro-stage"
+      - "runningtype=ro-backend"
+
+  webpage:
+    image: gcr.io/restaurant-order-192310/ro-webpage:master
+    container_name: webpage-stage
+    networks:
+      - rodevops_ro
+    ports:
+      - 11000:80
+    environment:
+      - WEB_DOCUMENT_INDEX=index.html
+    labels:
+      - "runningstatus=ro-stage"
+      - "runningtype=ro-frontend"
+
+volumes:
+  realm-data:
+  auth-data:
+  voicedevice-soundfiles:
+
+networks:
+  rodevops_ro:
+    external: true
